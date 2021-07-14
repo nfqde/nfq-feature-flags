@@ -27,26 +27,6 @@ pnpm install @nfq/feature-flags
 
 ## Configuration:
 To use feature flags there is some small configuration needed:
-  - .babelrc:
-
-    change it to an babel.config.js file because we need some functions.
-
-    example:
-    ```javascript
-    const {withFeatureFlags} = require('@nfq/feature-flags/babel');
-
-    module.exports = withFeatureFlags({
-        plugins: [...],
-        presets: [...]
-    }, {
-        deprecationEnv: 'live',
-        featureFlagImport: '@app/features',
-        jsxImport: '@nfq/feature-flags/jsx',
-        jsxWithFeature: 'WithFeature',
-        jsxWithoutFeature: 'WithoutFeature'
-    });
-    ```
-
   - .eslintrc:
 
     change it to an .eslintrc.js file because we need some functions.
@@ -81,6 +61,7 @@ To use feature flags there is some small configuration needed:
   - package.json
 
     To tell webpack that your project is treeshakeble you need to set an flag for it.
+    [Webpack documentation] (https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free)
 
     example:
     ```json
@@ -113,6 +94,27 @@ To use feature flags there is some small configuration needed:
 
     Last but not least you need some feature files that define your flags for the environments.
     Filenames look always the same with `features.FEATURE_ENV.js` the FEATURE_ENV part is your defined environment.
+    These files HAVE to live in your project root directory!
+    
+  - .babelrc:
+
+    change it to an babel.config.js file because we need some functions.
+
+    example:
+    ```javascript
+    const {withFeatureFlags} = require('@nfq/feature-flags/babel');
+
+    module.exports = withFeatureFlags({
+        plugins: [...],
+        presets: [...]
+    }, {
+        deprecationEnv: 'live',
+        featureFlagImport: '@app/features',
+        jsxImport: '@nfq/feature-flags/jsx',
+        jsxWithFeature: 'WithFeature',
+        jsxWithoutFeature: 'WithoutFeature'
+    });
+    ```
 
 ## Configuration Settings (Babel Plugin)
 
