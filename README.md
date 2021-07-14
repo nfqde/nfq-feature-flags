@@ -36,22 +36,8 @@ To use feature flags there is some small configuration needed:
     const {withFeatureFlags} = require('@nfq/feature-flags/babel');
 
     module.exports = withFeatureFlags({
-        plugins: [
-            ['@babel/plugin-proposal-decorators', {legacy: true}],
-            ['@babel/plugin-proposal-class-properties', {loose: true}],
-            ['styled-components', {
-                fileName: true,
-                preprocess: false,
-                pure: true,
-                ssr: true
-            }]
-        ],
-        presets: [
-            [
-                'next/babel',
-                {'transform-react-remove-prop-types': {}}
-            ]
-        ]
+        plugins: [...],
+        presets: [...]
     }, {
         deprecationEnv: 'live',
         featureFlagImport: '@app/features',
