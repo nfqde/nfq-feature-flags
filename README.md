@@ -133,10 +133,10 @@ Both have the exact same props you can use.
  - The `jsxWithFeature` component will only render its subtree if the feature is set to true.
  - The `jsxWithoutFeature` component will only render its subtree if the feature is set to false.
 
-| Prop        | type                              | required           | Description |
-| ----------- | --------------------------------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| feature     | FeatureFlag or Array[FeatureFlag] | :heavy_check_mark: | Defines the feature the component should look up to determine if it should render or not.                                                                                                                            |
-| deprecateOn | TimeString                        |                    | Define an date on which the babel module will throw deprecation messages for this feature. If none is set you will get deprecation warnings if an feature is configured as true on the `deprecationEnv` environment. |
+| Prop         | type                              | required           | Description |
+| -----------  | --------------------------------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| feature      | FeatureFlag or Array[FeatureFlag] | :heavy_check_mark: | Defines the feature the component should look up to determine if it should render or not.                                                                                                                            |
+| deprecatesOn | TimeString (YYYY-MM-DD format)    |                    | Define an date on which the babel module will throw deprecation messages for this feature. If none is set you will get deprecation warnings if an feature is configured as true on the `deprecationEnv` environment. |
 
 ## Usage:
 feature.live.js:
@@ -218,7 +218,7 @@ export default class Test extends Component {
     render() {
         return (
             <div>
-                <WithFeature deprecateOn="2021-07-14" feature={COOL_FEATURE}>
+                <WithFeature deprecatesOn="2021-07-14" feature={COOL_FEATURE}>
                     <p>Sends an deprecation warning on build time if date is greater then deprecateOn</p>
                 </WithFeature>
             </div>
