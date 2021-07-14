@@ -10,7 +10,7 @@
 - [Questions](#questions)
 
 ## Description: [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-    This is an node module that aims for simple configuration and usage of feature flags. It is build for especially build time feature flags to enable treeshaking of unshipped features depending on the environment.
+This is an node module that aims for simple configuration and usage of feature flags. It is build for especially build time feature flags to enable treeshaking of unshipped features depending on the environment.
 ## Installation:
 To install the package run
 ```sh
@@ -240,13 +240,13 @@ export default class Test extends Component {
 ```
 
 ## Contributions:
-    .NFQ | Christoph Kruppe
+.NFQ | Christoph Kruppe
 
 ## License:
-    The licence used is: `MIT`
-    Click on licence badge for licence details:
+The licence used is: `MIT`
+Click on licence badge for licence details:
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Questions:
-    If you have any furter questions please contact the following email address:
-    email: c.kruppe@nfq.de
+If you have any furter questions please contact the following email address:
+email: c.kruppe@nfq.de
