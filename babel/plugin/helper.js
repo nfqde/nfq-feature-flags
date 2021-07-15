@@ -29,6 +29,9 @@ module.exports.handleJsxElement = (path, state, babelTypes) => {
     const {children} = path.node;
 
     const props = openingElement.attributes.map(attribute => {
+        const lineNumber = path.node.openingElement.loc.start.line;
+        const columnNumber = path.node.openingElement.loc.start.column;
+        const file = `${state.filename}:${lineNumber}:${columnNumber}`.blue;
         let value;
 
         if (attribute.name.name === 'deprecatesOn') {
@@ -40,15 +43,27 @@ module.exports.handleJsxElement = (path, state, babelTypes) => {
         }
         if (attribute.name.name === 'feature') {
             if (babelTypes.isArrayExpression(attribute.value.expression)) {
-                value = attribute.value.expression.elements.map(item => ({
-                    name: item.trailingComments[0].value.trim(),
-                    value: item
-                }));
+                try {
+                    value = attribute.value.expression.elements.map(item => ({
+                        name: item.trailingComments[0].value.trim(),
+                        value: item
+                    }));
+                } catch (e) {
+                    throw new Error(
+                        `${file}: ${tagName} one or more features are no flags from ${state.opts.featureFlagImport}! (If you are sure they are then consider to import the flags first.)`.red
+                    );
+                }
             } else {
-                value = [{
-                    name: attribute.value.expression.trailingComments[0].value.trim(),
-                    value: attribute.value.expression
-                }];
+                try {
+                    value = [{
+                        name: attribute.value.expression.trailingComments[0].value.trim(),
+                        value: attribute.value.expression
+                    }];
+                } catch (e) {
+                    throw new Error(
+                        `${file}: ${tagName} one or more features are no flags from ${state.opts.featureFlagImport}! (If you are sure they are then consider to import the flags first.)`.red
+                    );
+                }
             }
 
             return [attribute.name.name, value];
@@ -118,12 +133,6 @@ const checkFeatures = (tagName, props, path, state) => {
     if (typeof props.feature === 'undefined') {
         throw new Error(
             `${file}: ${tagName} has no feature prop!`.red
-        );
-    }
-
-    if (props.feature.some(item => (item.value.type !== 'BooleanLiteral' && item.value.trailingComments.length > 0))) {
-        throw new Error(
-            `${file}: ${tagName} one or more features are no flags from ${state.opts.featureFlagImport}! (If you are sure they are then consider to import the flags first.)`.red
         );
     }
 };
