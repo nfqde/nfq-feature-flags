@@ -32,16 +32,22 @@ To use feature flags there is some small configuration needed:
     change it to an .eslintrc.js file because we need some functions.
     To prevent eslint from complaining about not existing modules there is an eslint function to set some rules for you.
 
+    The Function params used are the featureFlagImport option and the jsxImport option for the babel config to prevent eslint from firing on these pseudo imports.
+
     example:
     ```javascript
-    const featureFlags = require('@nfq/feature-flags/eslint/import')(['@app/features', '@nfq/feature-flags/jsx']);
+    // can be used like this
+    const featureFlagsRules = require('@nfq/feature-flags/eslint/import')(['@app/features', '@nfq/feature-flags/jsx']);
+    // or this
+    const withFeatureFlags = require('@nfq/feature-flags/eslint/import');
+    const featureFlagsRules = withFeatureFlags(['@app/features', '@nfq/feature-flags/jsx']);
 
     module.exports = {
         extends: [
             '@nfq'
         ],
         rules: {
-            ...featureFlags.rules
+            ...featureFlagsRules.rules
         }
     };
     ```
@@ -95,7 +101,7 @@ To use feature flags there is some small configuration needed:
     Last but not least you need some feature files that define your flags for the environments.
     Filenames look always the same with `features.FEATURE_ENV.js` the FEATURE_ENV part is your defined environment.
     These files HAVE to live in your project root directory!
-    
+
   - .babelrc:
 
     change it to an babel.config.js file because we need some functions.
@@ -152,7 +158,7 @@ module.exports = {COOL_FEATURE: true};
 ```javascript
 import {COOL_FEATURE} from '@app/features';
 
-const oldFunktion = () => {
+const oldFunction = () => {
     /* ... */
 }
 
@@ -164,7 +170,7 @@ const featureOrNot = () => {
     if (COOL_FEATURE) {
         newShinyFunction();
     } else {
-        oldFunktion
+        oldFunction();
     }
 }
 ```
@@ -186,8 +192,8 @@ import {Component} from 'react';
 
 import {COOL_FEATURE} from '@app/features';
 import {WithFeature, WithoutFeature} from '@nfq/feature-flags/jsx';
-import Test from 'Components/Test'; // gets eliminated if feature is not true
-import Test2 from 'Components/Test2'; // gets eliminated if feature is true
+import Live from 'Components/Live'; // gets eleminated on stage environment because feature is true.
+import Stage from 'Components/Stage'; // gets eleminated on Live environment  because feature is true.
 
 export default class Test extends Component {
     render() {
@@ -195,11 +201,11 @@ export default class Test extends Component {
             <div>
                 <WithFeature feature={COOL_FEATURE}>
                     <p>This is only rendered and in the final bundle if the feature is active</p>
-                    <Test />
+                    <Stage />
                 </WithFeature>
                 <WithoutFeature feature={COOL_FEATURE}>
                     <p>This is only rendered and in the final bundle if the feature is inactive</p>
-                    <Test2 />
+                    <Live />
                 </WithoutFeature>
             </div>
         )
