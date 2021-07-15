@@ -71,13 +71,17 @@ module.exports = withFeatureFlags({
 ---
 ### webpack.config.js:
 
-If you don't use nextjs use this instead.
+If you don't use nextjs but webpack use this instead.
+The param can be an Object or an function.
 
 example:
 ```javascript
-// Comming soon!
+const {withFeatureFlags} = require('@nfq/feature-flags/webpack');
+
+module.exports = withFeatureFlags({
+    // webpack config like normal.
+});
 ```
----
 ### package.json
 
 To tell webpack that your project is treeshakeble you need to set an flag for it.
