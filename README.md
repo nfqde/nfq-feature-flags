@@ -24,104 +24,120 @@ or on pnpm
 ```sh
 pnpm install @nfq/feature-flags
 ```
-
+---
+---
 ## Configuration:
 To use feature flags there is some small configuration needed:
-  - .eslintrc:
 
-    change it to an .eslintrc.js file because we need some functions.
-    To prevent eslint from complaining about not existing modules there is an eslint function to set some rules for you.
+---
+### .eslintrc:
 
-    The Function params used are the featureFlagImport option and the jsxImport option for the babel config to prevent eslint from firing on these pseudo imports.
+change it to an .eslintrc.js file because we need some functions.
+To prevent eslint from complaining about not existing modules there is an eslint function to set some rules for you.
 
-    example:
-    ```javascript
-    // can be used like this
-    const featureFlagsRules = require('@nfq/feature-flags/eslint/import')(['@app/features', '@nfq/feature-flags/jsx']);
-    // or this
-    const withFeatureFlags = require('@nfq/feature-flags/eslint/import');
-    const featureFlagsRules = withFeatureFlags(['@app/features', '@nfq/feature-flags/jsx']);
+The Function params used are the featureFlagImport option and the jsxImport option for the babel config to prevent eslint from firing on these pseudo imports.
 
-    module.exports = {
-        extends: [
-            '@nfq'
-        ],
-        rules: {
-            ...featureFlagsRules.rules
-        }
-    };
-    ```
+example:
 
-  - next.config.js:
+```javascript
+// can be used like this
+const featureFlagsRules = require('@nfq/feature-flags/eslint/import')(['@app/features', '@nfq/feature-flags/jsx']);
+// or this
+const withFeatureFlags = require('@nfq/feature-flags/eslint/import');
+const featureFlagsRules = withFeatureFlags(['@app/features', '@nfq/feature-flags/jsx']);
 
-    If you are in an nextjs environment you need some extra config to tell webpack not to cache your babel config. So here is also some little helper.
-
-    example:
-    ```javascript
-    const {withFeatureFlags} = require('@nfq/feature-flags/next');
-
-    module.exports = withFeatureFlags({
-        // nextjs config like normal.
-    });
-    ```
-  - package.json
-
-    To tell webpack that your project is treeshakeble you need to set an flag for it.
-    [Webpack documentation] (https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free)
-
-    example:
-    ```json
-    {
-        ...
-        "sideEffects": [
-            "**/*.css"
-        ],
-        ...
+module.exports = {
+    extends: [
+        '@nfq'
+    ],
+    rules: {
+        ...featureFlagsRules.rules
     }
-    ```
+};
+```
+---
+### next.config.js:
 
-    Also to tell the plugin and module on build time in which environment it is running you have to set an
-    `FEATURE_ENV=` variable these define your possible environments.
+If you are in an nextjs environment you need some extra config to tell webpack not to cache your babel config. So here is also some little helper.
 
-    example:
-    ```json
-    {
-        ...
-        "scripts": {
-            "build:live": "cross-env FEATURE_ENV=live next build && cross-env FEATURE_ENV=live next export",
-            "build:stage": "cross-env FEATURE_ENV=stage next build && cross-env FEATURE_ENV=stage next export",
-            "dev": "cross-env FEATURE_ENV=dev next dev",
-        },
-        ...
-    }
-    ```
+example:
+```javascript
+const {withFeatureFlags} = require('@nfq/feature-flags/next');
 
-  - feature files:
+module.exports = withFeatureFlags({
+    // nextjs config like normal.
+});
+```
+---
+### webpack.config.js:
 
-    Last but not least you need some feature files that define your flags for the environments.
-    Filenames look always the same with `features.FEATURE_ENV.js` the FEATURE_ENV part is your defined environment.
-    These files HAVE to live in your project root directory!
+If you don't use nextjs use this instead.
 
-  - .babelrc:
+example:
+```javascript
+// Comming soon!
+```
+---
+### package.json
 
-    change it to an babel.config.js file because we need some functions.
+To tell webpack that your project is treeshakeble you need to set an flag for it.
+[Webpack documentation for sideEffects](https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free)
 
-    example:
-    ```javascript
-    const {withFeatureFlags} = require('@nfq/feature-flags/babel');
+example:
+```json
+{
+    ...
+    "sideEffects": [
+        "**/*.css"
+    ],
+    ...
+}
+```
 
-    module.exports = withFeatureFlags({
-        plugins: [...],
-        presets: [...]
-    }, {
-        deprecationEnv: 'live',
-        featureFlagImport: '@app/features',
-        jsxImport: '@nfq/feature-flags/jsx',
-        jsxWithFeature: 'WithFeature',
-        jsxWithoutFeature: 'WithoutFeature'
-    });
-    ```
+Also to tell the plugin and module on build time in which environment it is running you have to set an
+`FEATURE_ENV=` variable these define your possible environments.
 
+example:
+```json
+{
+    ...
+    "scripts": {
+        "build:live": "cross-env FEATURE_ENV=live next build && cross-env FEATURE_ENV=live next export",
+        "build:stage": "cross-env FEATURE_ENV=stage next build && cross-env FEATURE_ENV=stage next export",
+        "dev": "cross-env FEATURE_ENV=dev next dev",
+    },
+    ...
+}
+```
+---
+### feature files:
+
+Last but not least you need some feature files that define your flags for the environments.
+Filenames look always the same with `features.FEATURE_ENV.js` the FEATURE_ENV part is your defined environment.
+These files HAVE to live in your project root directory!
+
+---
+### .babelrc:
+
+change it to an babel.config.js file because we need some functions.
+
+example:
+```javascript
+const {withFeatureFlags} = require('@nfq/feature-flags/babel');
+
+module.exports = withFeatureFlags({
+    plugins: [...],
+    presets: [...]
+}, {
+    deprecationEnv: 'live',
+    featureFlagImport: '@app/features',
+    jsxImport: '@nfq/feature-flags/jsx',
+    jsxWithFeature: 'WithFeature',
+    jsxWithoutFeature: 'WithoutFeature'
+});
+```
+---
+---
 ## Configuration Settings (Babel Plugin)
 
 | Option            | type   | Default                | Description                                                                     |
@@ -132,6 +148,8 @@ To use feature flags there is some small configuration needed:
 | jsxWithFeature    | string | WithFeature            | The jsx component name to mark an subtree to only show with an specific feature |
 | jsxWithoutFeature | string | WithoutFeature         | The jsx component name to mark an subtree to only show with an specific feature |
 
+---
+---
 ## JSX props
 
 You can import to JSX components both names defined in the babel settings section.
@@ -144,6 +162,8 @@ Both have the exact same props you can use.
 | feature      | FeatureFlag or Array[FeatureFlag] | :heavy_check_mark: | Defines the feature the component should look up to determine if it should render or not.                                                                                                                            |
 | deprecatesOn | TimeString (YYYY-MM-DD format)    |                    | Define an date on which the babel module will throw deprecation messages for this feature. If none is set you will get deprecation warnings if an feature is configured as true on the `deprecationEnv` environment. |
 
+---
+---
 ## Usage:
 feature.live.js:
 ```javascript
@@ -153,7 +173,7 @@ feature.stage.js:
 ```javascript
 module.exports = {COOL_FEATURE: true};
 ```
-
+---
 ### Plain js Examples:
 ```javascript
 import {COOL_FEATURE} from '@app/features';
@@ -184,7 +204,7 @@ const featureOrNot = () => {
     /* ... */
 }
 ```
-
+---
 ### React Examples:
 
 ```jsx
@@ -232,15 +252,20 @@ export default class Test extends Component {
     }
 }
 ```
-
+---
+---
 ## Contributions:
 .NFQ | Christoph Kruppe
 
+---
+---
 ## License:
 The licence used is: `MIT`
 Click on licence badge for licence details:
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+---
+---
 ## Questions:
 If you have any furter questions please contact the following email address:
 email: c.kruppe@nfq.de
