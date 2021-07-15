@@ -146,7 +146,7 @@ module.exports = withFeatureFlags({
 | featureFlagImport | string | @app/features          | The import name to use if you want to import an feature flag                    |
 | jsxImport         | string | @nfq/feature-flags/jsx | The import name to use if you want to import jsx helpers for react              |
 | jsxWithFeature    | string | WithFeature            | The jsx component name to mark an subtree to only show with an specific feature |
-| jsxWithoutFeature | string | WithoutFeature         | The jsx component name to mark an subtree to only show with an specific feature |
+| jsxWithoutFeature | string | WithoutFeature         | The jsx component name to mark an subtree to only show without an specific feature |
 
 ---
 ---
@@ -158,18 +158,18 @@ Both have the exact same props you can use.
  - The `jsxWithoutFeature` component will only render its subtree if the feature is set to false.
 
 | Prop         | type                              | required           | Description |
-| -----------  | --------------------------------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -----------  | --------------------------------- | :----------------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | feature      | FeatureFlag or Array[FeatureFlag] | :heavy_check_mark: | Defines the feature the component should look up to determine if it should render or not.                                                                                                                            |
 | deprecatesOn | TimeString (YYYY-MM-DD format)    |                    | Define an date on which the babel module will throw deprecation messages for this feature. If none is set you will get deprecation warnings if an feature is configured as true on the `deprecationEnv` environment. |
 
 ---
 ---
 ## Usage:
-feature.live.js:
+feature.live.js (live as example FEATURE_ENV):
 ```javascript
 module.exports = {COOL_FEATURE: false};
 ```
-feature.stage.js:
+feature.stage.js (stage as example FEATURE_ENV):
 ```javascript
 module.exports = {COOL_FEATURE: true};
 ```
@@ -212,8 +212,8 @@ import {Component} from 'react';
 
 import {COOL_FEATURE} from '@app/features';
 import {WithFeature, WithoutFeature} from '@nfq/feature-flags/jsx';
-import Live from 'Components/Live'; // gets eleminated on stage environment because feature is true.
-import Stage from 'Components/Stage'; // gets eleminated on Live environment  because feature is true.
+import Live from 'Components/Live'; // gets eliminated on stage environment because feature is true.
+import Stage from 'Components/Stage'; // gets eliminated on Live environment because feature is true.
 
 export default class Test extends Component {
     render() {
