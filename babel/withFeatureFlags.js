@@ -16,8 +16,7 @@ module.exports.withFeatureFlags = (config, options) => api => {
 
     // eslint-disable-next-line security/detect-non-literal-require
     const cache = api.cache(() => process.env.FEATURE_ENV);
-
-    config.plugins.push([path.join(__dirname, '/plugin/jsx-feature-flags-plugin.js'), {
+    const plugin = [path.join(__dirname, '/plugin/jsx-feature-flags-plugin.js'), {
         deprecationEnv: options.deprecationEnv ?? 'live',
         featureFlagImport: '@app/features',
         // eslint-disable-next-line security/detect-non-literal-require
@@ -25,7 +24,23 @@ module.exports.withFeatureFlags = (config, options) => api => {
         jsxImport: options.jsxImport ?? '@nfq/feature-flags/jsx',
         jsxWithFeature: options.jsxWithFeature ?? 'WithFeature',
         jsxWithoutFeature: options.jsxWithoutFeature ?? 'WithoutFeature'
-    }]);
+    }];
+
+
+    if (typeof config.env !== 'undefined') {
+        Object.keys(config.env).forEach(env => {
+            if (!Array.isArray(config.env[String(env)].plugins)) {
+                // eslint-disable-next-line no-param-reassign
+                config.env[String(env)].plugins = [];
+            }
+
+            config.env[String(env)].plugins.push(plugin);
+        });
+    }
+
+    if (Array.isArray(config.plugins)) {
+        config.plugins.push(plugin);
+    }
 
     return config;
 };
