@@ -1,7 +1,7 @@
 module.exports = ignore => ({
     rules: {
         'import/no-unresolved': [
-            'error',
+            2,
             {
                 caseSensitive: true,
                 commonjs: true,
