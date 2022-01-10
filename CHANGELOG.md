@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.2](https://github.com/nfqde/nfq-feature-flags/compare/v1.2.1...v1.2.2) (2022-01-10)
+
+
+### Bug Fixes
+
+* **package.json:** fix colors package ([#16](https://github.com/nfqde/nfq-feature-flags/issues/16)) ([e96e5fd](https://github.com/nfqde/nfq-feature-flags/commit/e96e5fdb8fba767a48be1b802d3aa682f22cd106))
+
 ### [1.2.1](https://github.com/nfqde/nfq-feature-flags/compare/v1.2.0...v1.2.1) (2021-10-13)
 
 
