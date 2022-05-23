@@ -12,7 +12,7 @@ const path = require('path');
  */
 const generateTypeFiles = (featureFlagImport, jsxImport, jsxWithFeature, jsxWithoutFeature, usedEnv) => {
     const rootPath = process.cwd();
-    const featureJsx = `declare module '${featureFlagImport}' {
+    const featureJsx = `declare module '${jsxImport}' {
     interface IFeature {
         deprecatesOn?: string;
         feature: string;
@@ -33,7 +33,7 @@ const generateTypeFiles = (featureFlagImport, jsxImport, jsxWithFeature, jsxWith
     // eslint-disable-next-line security/detect-non-literal-require
     const flags = require(path.resolve(rootPath, `./features.${usedEnv}.js`)) || {};
 
-    const featureFlags = `declare module '${jsxImport}' {
+    const featureFlags = `declare module '${featureFlagImport}' {
     ${Object.keys(flags).map(key => `export const ${key}: bool;`).join('\n    ')}
 };`;
 
