@@ -31,10 +31,10 @@ const generateTypeFiles = (featureFlagImport, jsxImport, jsxWithFeature, jsxWith
     fs.writeFileSync(`${rootPath}/types/featureJsx.d.ts`, featureJsx);
 
     // eslint-disable-next-line security/detect-non-literal-require
-    const flags = require(path.resolve(featureFlagImport, `./features.${usedEnv}.js`)) || {};
+    const flags = require(path.resolve(rootPath, `./features.${usedEnv}.js`)) || {};
 
     const featureFlags = `declare module '${jsxImport}' {
-    ${Object.keys(flags).map(key => `export const ${key}: bool;`).join('\n')}
+    ${Object.keys(flags).map(key => `export const ${key}: bool;`).join('\n    ')}
 };`;
 
     // eslint-disable-next-line security/detect-non-literal-fs-filename, node/no-sync
