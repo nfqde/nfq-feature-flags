@@ -70,7 +70,8 @@ if (options.help) {
         options['feature-import'],
         options['jsx-import'],
         options['feature-name'],
-        options['no-feature-name']
+        options['no-feature-name'],
+        options.env
     );
     process.stdout.write('Done');
 }
