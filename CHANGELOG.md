@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/nfqde/nfq-feature-flags/compare/v1.2.2...v1.3.0) (2022-05-23)
+
+
+### Features
+
+* **ClI:** Add type generation ([#18](https://github.com/nfqde/nfq-feature-flags/issues/18)) ([770fad5](https://github.com/nfqde/nfq-feature-flags/commit/770fad56ff77a4386591452b9c931b4a40769d9a))
+
 ### [1.2.2](https://github.com/nfqde/nfq-feature-flags/compare/v1.2.1...v1.2.2) (2022-01-10)
 
 
