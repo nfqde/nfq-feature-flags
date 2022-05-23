@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.1](https://github.com/nfqde/nfq-feature-flags/compare/v1.3.0...v1.3.1) (2022-05-23)
+
+
+### Bug Fixes
+
+* **CLI:** Fix forgotten option env ([#19](https://github.com/nfqde/nfq-feature-flags/issues/19)) ([73f5981](https://github.com/nfqde/nfq-feature-flags/commit/73f5981160321a88a3fe6207c3bc9e966b652ea3))
+
 ## [1.3.0](https://github.com/nfqde/nfq-feature-flags/compare/v1.2.2...v1.3.0) (2022-05-23)
 
 
