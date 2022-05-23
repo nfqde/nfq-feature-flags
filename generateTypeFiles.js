@@ -12,7 +12,7 @@ const path = require('path');
  */
 const generateTypeFiles = (featureFlagImport, jsxImport, jsxWithFeature, jsxWithoutFeature, usedEnv) => {
     const rootPath = process.cwd();
-    const featureJsx = `declare module '${jsxImport}' {
+    const featureJsx = `declare module '${featureFlagImport}' {
     interface IFeature {
         deprecatesOn?: string;
         feature: string;
