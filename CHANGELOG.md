@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.2](https://github.com/nfqde/nfq-feature-flags/compare/v1.3.1...v1.3.2) (2022-05-23)
+
+
+### Bug Fixes
+
+* **CLI:** fix file generation ([#20](https://github.com/nfqde/nfq-feature-flags/issues/20)) ([6b095f8](https://github.com/nfqde/nfq-feature-flags/commit/6b095f8cad6cf6ad429d3412fe86a10e33e49908))
+
 ## [1.3.1](https://github.com/nfqde/nfq-feature-flags/compare/v1.3.0...v1.3.1) (2022-05-23)
 
 
