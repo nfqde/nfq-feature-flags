@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.5](https://github.com/nfqde/nfq-feature-flags/compare/v1.3.4...v1.3.5) (2022-07-05)
+
+
+### Bug Fixes
+
+* **Next:** Update next webpack config ([#23](https://github.com/nfqde/nfq-feature-flags/issues/23)) ([5acf4d4](https://github.com/nfqde/nfq-feature-flags/commit/5acf4d426892ef402887dee6ba04ce1f3cd482c3))
+
 ## [1.3.4](https://github.com/nfqde/nfq-feature-flags/compare/v1.3.3...v1.3.4) (2022-05-23)
 
 
