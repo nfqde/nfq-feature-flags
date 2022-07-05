@@ -2,7 +2,7 @@ const path = require('path');
 
 const withTM = require('next-transpile-modules')(['@nfq/feature-flags']);
 
-module.exports.withFeatureFlags = nextConfig => {
+module.exports.withFeatureFlags = (nextConfig, {phase}) => {
     const transpiledConfig = withTM(nextConfig);
 
     return {
@@ -11,7 +11,7 @@ module.exports.withFeatureFlags = nextConfig => {
             // eslint-disable-next-line security/detect-non-literal-require, no-param-reassign
             config.cache.version += `|${JSON.stringify(require(path.resolve(process.cwd(), `./features.${process.env.FEATURE_ENV}.js`)))}`;
             // eslint-disable-next-line no-param-reassign
-            config.cache.name = `${config.name}-${process.env.FEATURE_ENV}`;
+            config.cache.name = `${config.name}-${process.env.FEATURE_ENV}-${phase}`;
 
             if (typeof transpiledConfig.webpack === 'function') {
                 return transpiledConfig.webpack(config, options);
