@@ -24,12 +24,12 @@ declare module '${jsxImport}' {
     /**
      * WithFeature component.
      */
-    export class ${jsxWithFeature} extends React.Component<IFeature, any>{};
+    export class ${jsxWithFeature} extends Component<IFeature, any> {}
     /**
      * WithoutFeature component.
      */
-    export class ${jsxWithoutFeature} extends React.Component<IFeature, any>{};
-};`;
+    export class ${jsxWithoutFeature} extends Component<IFeature, any> {}
+}`;
 
     try {
         // eslint-disable-next-line security/detect-non-literal-fs-filename, node/no-sync
@@ -44,7 +44,7 @@ declare module '${jsxImport}' {
 
     const featureFlags = `declare module '${featureFlagImport}' {
     ${Object.keys(flags).map(key => `export const ${key}: boolean;`).join('\n    ')}
-};`;
+}`;
 
     // eslint-disable-next-line security/detect-non-literal-fs-filename, node/no-sync
     fs.writeFileSync(`${rootPath}/types/featureFlags.d.ts`, featureFlags);
