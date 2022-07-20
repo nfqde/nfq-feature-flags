@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.7](https://github.com/nfqde/nfq-feature-flags/compare/v1.3.6...v1.3.7) (2022-07-20)
+
+
+### Bug Fixes
+
+* **Types:** Fix type generation eslint issues ([#25](https://github.com/nfqde/nfq-feature-flags/issues/25)) ([f67d39f](https://github.com/nfqde/nfq-feature-flags/commit/f67d39f77190c3ba6e396afc1732c03a7b9c2aff))
+
 ### [1.3.6](https://github.com/nfqde/nfq-feature-flags/compare/v1.3.5...v1.3.6) (2022-07-20)
 
 
