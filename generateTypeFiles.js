@@ -12,13 +12,22 @@ const path = require('path');
  */
 const generateTypeFiles = (featureFlagImport, jsxImport, jsxWithFeature, jsxWithoutFeature, usedEnv) => {
     const rootPath = process.cwd();
-    const featureJsx = `declare module '${jsxImport}' {
+    const featureJsx = `/* eslint-disable max-classes-per-file, react/no-multi-comp */
+import {Component} from 'react';
+
+declare module '${jsxImport}' {
     interface IFeature {
         deprecatesOn?: string;
         feature: string;
     }
 
+    /**
+     * WithFeature component.
+     */
     export class ${jsxWithFeature} extends React.Component<IFeature, any>{};
+    /**
+     * WithoutFeature component.
+     */
     export class ${jsxWithoutFeature} extends React.Component<IFeature, any>{};
 };`;
 
@@ -34,7 +43,7 @@ const generateTypeFiles = (featureFlagImport, jsxImport, jsxWithFeature, jsxWith
     const flags = require(path.resolve(rootPath, `./features.${usedEnv}.js`)) || {};
 
     const featureFlags = `declare module '${featureFlagImport}' {
-    ${Object.keys(flags).map(key => `export const ${key}: bool;`).join('\n    ')}
+    ${Object.keys(flags).map(key => `export const ${key}: boolean;`).join('\n    ')}
 };`;
 
     // eslint-disable-next-line security/detect-non-literal-fs-filename, node/no-sync
