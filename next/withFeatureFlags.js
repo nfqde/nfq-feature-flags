@@ -2,13 +2,10 @@
 const path = require('path');
 
 module.exports.withFeatureFlags = (nextConfig, {phase}) => {
-    if (nextConfig.experimental) {
-        nextConfig.experimental = {
-            ...nextConfig.experimental,
-            transpilePackages: ['@nfq/feature-flags']
-        };
+    if (nextConfig.transpilePackages) {
+        nextConfig.transpilePackages.push('@nfq/feature-flags');
     } else {
-        nextConfig.experimental = {transpilePackages: ['@nfq/feature-flags']};
+        nextConfig.transpilePackages = ['@nfq/feature-flags'];
     }
 
     return {
