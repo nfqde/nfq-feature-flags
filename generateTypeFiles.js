@@ -4,21 +4,21 @@ const path = require('path');
 /**
  * Generate Type Files.
  *
- * @param {String} featureFlagImport The import name for feature flags configured in your babel config.
- * @param {String} jsxImport         The import name for the jsx components that render feature flags. As configured in your babel config.
- * @param {String} jsxWithFeature    The name of the with feature flag jsx component. As configured in your babel config.
- * @param {String} jsxWithoutFeature The name of the without feature flag jsx component. As configured in your babel config.
- * @param {String} usedEnv           The env to use the flags from.
+ * @param {string} featureFlagImport The import name for feature flags configured in your babel config.
+ * @param {string} jsxImport         The import name for the jsx components that render feature flags. As configured in your babel config.
+ * @param {string} jsxWithFeature    The name of the with feature flag jsx component. As configured in your babel config.
+ * @param {string} jsxWithoutFeature The name of the without feature flag jsx component. As configured in your babel config.
+ * @param {string} usedEnv           The env to use the flags from.
  */
 const generateTypeFiles = (featureFlagImport, jsxImport, jsxWithFeature, jsxWithoutFeature, usedEnv) => {
     const rootPath = process.cwd();
     const featureJsx = `/* eslint-disable max-classes-per-file, react/no-multi-comp */
-import {Component} from 'react';
-
 declare module '${jsxImport}' {
+    import {Component} from 'react';
+
     interface IFeature {
         deprecatesOn?: string;
-        feature: string;
+        feature: boolean;
     }
 
     /**
