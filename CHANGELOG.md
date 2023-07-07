@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.2](https://github.com/nfqde/nfq-feature-flags/compare/v3.0.1...v3.0.2) (2023-07-07)
+
+
+### Bug Fixes
+
+* **Types:** fix child nodes for pseudo types. ([#30](https://github.com/nfqde/nfq-feature-flags/issues/30)) ([8a80528](https://github.com/nfqde/nfq-feature-flags/commit/8a80528727dff8fbd4ccbdfc25e2c519e25df4ee))
+
 ### [3.0.1](https://github.com/nfqde/nfq-feature-flags/compare/v3.0.0...v3.0.1) (2023-07-07)
 
 
