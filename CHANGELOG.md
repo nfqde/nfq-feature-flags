@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1](https://github.com/nfqde/nfq-feature-flags/compare/v3.0.0...v3.0.1) (2023-07-07)
+
+
+### Bug Fixes
+
+* **Types:** Fix type generation for typescript projects ([#29](https://github.com/nfqde/nfq-feature-flags/issues/29)) ([489d838](https://github.com/nfqde/nfq-feature-flags/commit/489d8389ef7438404604c5ee52b20468d4044b2c))
+
 ## [3.0.0](https://github.com/nfqde/nfq-feature-flags/compare/v2.0.0...v3.0.0) (2023-02-19)
 
 
