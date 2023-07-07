@@ -14,9 +14,11 @@ const generateTypeFiles = (featureFlagImport, jsxImport, jsxWithFeature, jsxWith
     const rootPath = process.cwd();
     const featureJsx = `/* eslint-disable max-classes-per-file, react/no-multi-comp */
 declare module '${jsxImport}' {
+    import type {ReactNode} from 'react';
     import {Component} from 'react';
 
     interface IFeature {
+        children: ReactNode;
         deprecatesOn?: string;
         feature: boolean;
     }
