@@ -7,6 +7,13 @@ module.exports = babel => {
         name: 'jsx-feature-flags-plugin',
         visitor: {
             ImportDeclaration: {
+                /**
+                 * Removes an import declaration if it imports a feature flag or a JSX element that is not used,
+                 * based on the presence of specifiers and whether the import path matches a flag or JSX condition.
+                 *
+                 * @param {object} path  The Babel path object for the import declaration.
+                 * @param {object} state The current state of the transformation, including options and other metadata.
+                 */
                 exit(path, state) {
                     const importPath = path.node.source.value;
 
@@ -18,6 +25,14 @@ module.exports = babel => {
                     }
                 }
             },
+            /**
+             * Processes individual import specifiers, replacing references based on feature flags or removing unsupported imports.
+             * Throws an error if an import does not match the supported flags or JSX elements.
+             *
+             * @param {object} path  The Babel path object for the import specifier.
+             * @param {object} state The transformation state with options specifying supported flags and JSX elements.
+             * @throws {Error} If an imported flag or JSX element is not supported.
+             */
             ImportSpecifier(path, state) {
                 const importPath = path.parent.source.value;
                 const {flags} = state.opts;
@@ -56,6 +71,13 @@ module.exports = babel => {
                     path.scope.removeOwnBinding(bindingName);
                 }
             },
+            /**
+             * Handles JSX elements based on feature flags or conditional rendering settings.
+             * It manipulates JSX tree elements directly to reflect feature flag states or configured JSX elements.
+             *
+             * @param {object} path  The Babel path object for the JSX element.
+             * @param {object} state The transformation state, including configuration for feature flags and conditional JSX.
+             */
             JSXElement(path, state) {
                 const elem = handleJsxElement(path, state, types);
 

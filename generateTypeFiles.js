@@ -20,7 +20,8 @@ declare module '${jsxImport}' {
     interface IFeature {
         children: ReactNode;
         deprecatesOn?: string;
-        feature: boolean;
+        feature: boolean[] | boolean;
+        neverDeprecates?: boolean;
     }
 
     /**

@@ -34,6 +34,9 @@ module.exports.handleJsxElement = (path, state, babelTypes) => {
         const file = `${state.filename}:${lineNumber}:${columnNumber}`.blue;
         let value;
 
+        if (attribute.name.name === 'neverDeprecates') {
+            return [attribute.name.name, true];
+        }
         if (attribute.name.name === 'deprecatesOn') {
             if (babelTypes.isStringLiteral(attribute.value)) {
                 value = attribute.value.value;
@@ -118,12 +121,21 @@ module.exports.handleJsxElement = (path, state, babelTypes) => {
 };
 
 /**
- * Checks if feature prop is valid.
+ * Validates that a JSX tag includes a 'feature' prop as part of its attributes during a Babel transformation process.
+ * This function checks if the 'feature' prop is defined on a given JSX element. If the prop is missing,
+ * it throws an error to prevent processing of components without required feature flags,
+ * ensuring that feature-dependent components are correctly flagged in the source code.
  *
- * @param {String} tagName The name of the element.
- * @param {Object} props   Element props.
- * @param {Object} path    Ast Path.
- * @param {Object} state   Current babel state.
+ * @param {string} tagName The name of the JSX tag being checked.
+ * @param {object} props   The properties of the JSX tag. This should include a 'feature' property if the component is feature-toggled.
+ * @param {object} path    The Babel path object corresponding to the JSX element, used to extract line and column information for detailed error reporting.
+ * @param {object} state   State object passed through by the Babel transformation process, containing contextual information like the filename.
+ *
+ * @example
+ * // Example usage in a Babel plugin to enforce feature flagging of components
+ * checkFeatures('MyComponent', element.props, path, state);
+ *
+ * @throws {Error} Throws an error if the 'feature' prop is undefined, indicating that the component is missing required configuration.
  */
 const checkFeatures = (tagName, props, path, state) => {
     const lineNumber = path.node.openingElement.loc.start.line;
@@ -138,12 +150,21 @@ const checkFeatures = (tagName, props, path, state) => {
 };
 
 /**
- * Checks if feature prop is valid.
+ * Checks if a given JSX tag is deprecated based on its usage context and properties.
+ * This function evaluates whether a tag is deprecated by checking a specific deprecation date or by inspecting active features in a live environment configuration.
+ * Warnings are issued to the console if the tag is found to be deprecated.
  *
- * @param {String} tagName The name of the element.
- * @param {Object} props   Element props.
- * @param {Object} path    Ast Path.
- * @param {Object} state   Current babel state.
+ * @param {string} tagName The name of the JSX tag being checked.
+ * @param {object} props   The properties of the JSX tag, which include deprecation details and feature flags.
+ * @param {object} path    The Babel path object corresponding to the JSX element.
+ * @param {object} state   State object passed through by the Babel transformation process, containing file and environment details.
+ *
+ * @example
+ * // Example usage in a Babel plugin to check deprecation of JSX elements
+ * checkDeprecation('MyComponent', {
+ *   deprecatesOn: '2021-01-01',
+ *   feature: [{name: 'feature1'}, {name: 'feature2'}]
+ * }, path, state);
  */
 const checkDeprecation = (tagName, props, path, state) => {
     const lineNumber = path.node.openingElement.loc.start.line;
@@ -151,6 +172,8 @@ const checkDeprecation = (tagName, props, path, state) => {
     const feats = props.feature.map(item => item.name);
     const prefix = 'Warning!: '.yellow;
     const file = `${state.filename}:${lineNumber}:${columnNumber}`.blue;
+
+    if (props.neverDeprecates) return;
 
     if (props.deprecatesOn) {
         if (new Date() > new Date(props.deprecatesOn)) {
@@ -167,12 +190,27 @@ const checkDeprecation = (tagName, props, path, state) => {
 };
 
 /**
- * Generates an expression chain from an array if values.
+ * Generates a logical AND expression chain from an array of feature objects.
+ * This function recursively constructs a nested logical expression using the `&&` operator.
+ * It handles arrays of various lengths, reducing them into a single expression. If the array has one element,
+ * it returns the value of that element. For two elements, it directly constructs a logical expression.
+ * For more than two elements, it recursively combines them into a single expression.
  *
- * @param {Object} types         Object with all type constructors.
- * @param {Array}  [features=[]] Array of feature names.
+ * @param {typeof import("@babel/types")} types         The Babel types utility used to create AST nodes.
+ * @param {Array<{ value: any }>}         [features=[]] An array of objects where each object contains a `value` property that represents a condition or expression to be combined.
  *
- * @returns {Object} Literal or LogicalExpression objects.
+ * @returns {Expression} A Babel AST expression that represents the combined logical expression of the input features.
+ *
+ * @example
+ * // Example usage within a Babel plugin:
+ * const t = require("@babel/types");
+ * const featureConditions = [
+ *   { value: t.identifier("featureA") },
+ *   { value: t.identifier("featureB") },
+ *   { value: t.identifier("featureC") }
+ * ];
+ * const combinedExpression = generateExpressionChain(t, featureConditions);
+ * // This would output an AST for: featureA && featureB && featureC
  */
 const generateExpressionChain = (types, features = []) => {
     if (features.length <= 1) {
