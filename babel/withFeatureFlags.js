@@ -3,8 +3,8 @@ const path = require('path');
 /**
  * Adds feature flag plugin to babel config.
  *
- * @param {Object} config  Babel rc config used.
- * @param {Object} options Plugin options.
+ * @param {object} config  Babel rc config used.
+ * @param {object} options Plugin options.
  *
  * @returns {Function} Babel rc function.
  */
