@@ -1,0 +1,17 @@
+.history/
+target/.rustc_info.json
+target/CACHEDIR.TAG
+target/debug/
+target/release/
+target/wasm32-wasi/release/.fingerprint/
+target/wasm32-wasi/release/build/
+target/wasm32-wasi/release/deps/
+target/wasm32-wasi/release/incremental/
+target/wasm32-wasi/release/examples/
+target/wasm32-wasi/CACHEDIR.TAG
+target/wasm32-wasi/release/nfq_feature_flags.d
+target/wasm32-wasi/release/.cargo-lock
+.cargo
+.eslintrc
+Cargo.lock
+src/
