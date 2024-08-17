@@ -4,8 +4,8 @@
   "engines": {
     "node": ">=12.0.0"
   },
-  "description": "Add feature flags to babel, nextjs, react and default js code",
-  "main": "main.js",
+  "description": "Add feature flags to babel, nextjs, SWC, react and default js code",
+  "main": "target/wasm32-wasi/release/nfq_feature_flags.wasm",
   "standard-version": {
     "scripts": {
       "prebump": "nfqBump"
@@ -17,6 +17,7 @@
   "sideEffects": false,
   "scripts": {
     "deploy": "standard-version && git push --follow-tags origin master && npm publish",
+    "prepublishOnly": "cargo +nightly build-wasi --release",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -39,35 +40,35 @@
   "homepage": "https://github.com/nfqde/nfq-feature-flags#readme",
   "dependencies": {
     "colors": "1.4.0",
-    "command-line-args": "^5.2.1",
-    "command-line-usage": "^7.0.1"
+    "command-line-args": "^6.0.0",
+    "command-line-usage": "^7.0.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.10",
-    "@babel/eslint-parser": "^7.22.10",
-    "@babel/preset-env": "^7.22.10",
-    "@babel/preset-react": "^7.22.5",
-    "@nfq/eslint-config": "^3.0.1",
-    "@nfq/eslint-plugin": "^0.6.1",
-    "@typescript-eslint/eslint-plugin": "^6.4.1",
-    "@typescript-eslint/parser": "^6.4.1",
-    "eslint": "^8.47.0",
+    "@babel/core": "^7.25.2",
+    "@babel/eslint-parser": "^7.25.1",
+    "@babel/preset-env": "^7.25.3",
+    "@babel/preset-react": "^7.24.7",
+    "@nfq/eslint-config": "^3.2.1",
+    "@nfq/eslint-plugin": "^0.8.2",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^8.1.0",
+    "eslint": "^8.57.0",
     "eslint-import-resolver-alias": "^1.1.2",
-    "eslint-plugin-array-func": "^3.1.8",
+    "eslint-plugin-array-func": "^5.0.2",
     "eslint-plugin-better-styled-components": "^1.1.2",
-    "eslint-plugin-import": "^2.28.1",
-    "eslint-plugin-jsdoc": "^46.5.0",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsdoc": "^50.2.2",
+    "eslint-plugin-jsx-a11y": "^6.9.0",
     "eslint-plugin-no-unsanitized": "^4.0.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-perf-standard": "^1.0.3",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-promise": "^7.1.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-hooks-ssr": "^0.1.5",
     "eslint-plugin-redos": "^4.4.5",
-    "eslint-plugin-security": "^1.7.1",
-    "eslint-plugin-sort-destructure-keys": "^1.5.0",
-    "typescript": "^5.1.6"
+    "eslint-plugin-security": "^3.0.1",
+    "eslint-plugin-sort-destructure-keys": "^2.0.0",
+    "typescript": "^5.5.4"
   }
 }

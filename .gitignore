@@ -1,1 +1,5 @@
+.history
 node_modules
+/target
+^target/
+target

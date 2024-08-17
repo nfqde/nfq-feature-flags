@@ -7,6 +7,7 @@
 - [Configuration](#configuration)
   - [.eslintrc](#eslintrc)
   - [next.config.js](#nextconfigjs)
+  - [next.config.js with SWC](#nextconfigjs-using-it-with-swc)
   - [webpack.config.js](#webpackconfigjs)
   - [package.json](#packagejson)
   - [feature files](#feature-files)
@@ -79,6 +80,46 @@ module.exports = withFeatureFlags({
     // nextjs config like normal.
 });
 ```
+---
+### next.config.js using it with SWC:
+
+If you are in an nextjs environment and want to use it with SWC you need some extra config to tell SWC about the Plugin and also use selected environments and feature flags you defined in the features.*.js. All options from the babel config are applicable here too.
+
+example:
+```javascript
+const {withFeatureFlags} = require('@nfq/feature-flags/next');
+const liveFeatures = require('./features.live');
+const stageFeatures = require('./features.stage');
+
+module.exports = withFeatureFlags({
+    // nextjs config like normal.
+    experimental: {
+        swcPlugins: [[
+            '@nfq/feature-flags', {
+                featureEnv: process.env.FEATURE_ENV || 'stage',
+                featureFlags: {
+                    live: liveFeatures,
+                    stage: stageFeatures
+                },
+                // optional settings. These are the defaults and can be omitted.
+                deprecationEnv: 'live',
+                featureFlagImport: '@app/features',
+                jsxImport: '@nfq/feature-flags/jsx',
+                jsxWithFeature: 'WithFeature',
+                jsxWithoutFeature: 'WithoutFeature'
+            }
+        ]]
+    },
+});
+```
+
+$${\color{red}Warning!!}$$
+For the Plugin to work you have to make sure its the right Version in conjunction of the SWC core version used by your nextjs version. Here is a list for supported Versions so far:
+
+| SWC Version | Plugin Version |
+| ----------- | -------------- |
+| `0.9*.*`    | `3.*.*`        |
+
 ---
 ### webpack.config.js:
 
@@ -172,10 +213,11 @@ Both have the exact same props you can use.
  - The `jsxWithFeature` component will only render its subtree if the feature is set to true.
  - The `jsxWithoutFeature` component will only render its subtree if the feature is set to false.
 
-| Prop         | type                              | required           | Description |
-| -----------  | --------------------------------- | :----------------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| feature      | FeatureFlag or Array[FeatureFlag] | :heavy_check_mark: | Defines the feature the component should look up to determine if it should render or not.                                                                                                                            |
-| deprecatesOn | TimeString (YYYY-MM-DD format)    |                    | Define an date on which the babel module will throw deprecation messages for this feature. If none is set you will get deprecation warnings if an feature is configured as true on the `deprecationEnv` environment. |
+| Prop            | type                              | required           | Description |
+| --------------- | --------------------------------- | :----------------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| feature         | FeatureFlag or Array[FeatureFlag] | :heavy_check_mark: | Defines the feature the component should look up to determine if it should render or not.                                                                                                                            |
+| deprecatesOn    | TimeString (YYYY-MM-DD format)    |                    | Define an date on which the babel module will throw deprecation messages for this feature. If none is set you will get deprecation warnings if an feature is configured as true on the `deprecationEnv` environment. |
+| neverDeprecates | boolean                           |                    | If set to true the feature will never throw deprecation warnings.                                                                                                                                                    |
 
 ---
 ---
