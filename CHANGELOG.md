@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/nfqde/nfq-feature-flags/compare/v3.1.0...v3.2.0) (2024-08-17)
+
+
+### Features
+
+* **SWC:** Add swc plugin ([#35](https://github.com/nfqde/nfq-feature-flags/issues/35)) ([be91639](https://github.com/nfqde/nfq-feature-flags/commit/be91639a9cbf4ccd672230f90cef49ec412aacd1))
+
 ## [3.1.0](https://github.com/nfqde/nfq-feature-flags/compare/v3.0.3...v3.1.0) (2024-05-18)
 
 
