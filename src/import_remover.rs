@@ -44,7 +44,7 @@ impl ImportRemover {
         ModuleItem::ModuleDecl(ModuleDecl::Import(ImportDecl {
             span: DUMMY_SP,
             specifiers: vec![ImportSpecifier::Named(ImportNamedSpecifier {
-                local: Ident::new("Fragment".into(), DUMMY_SP),
+                local: Ident::new("Fragment".into(), DUMMY_SP, Default::default()),
                 imported: None,
                 span: DUMMY_SP,
                 is_type_only: false

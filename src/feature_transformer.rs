@@ -303,7 +303,7 @@ impl VisitMut for FeatureTransformer {
                         span: DUMMY_SP,
                         opening: JSXOpeningElement {
                             span: DUMMY_SP,
-                            name: JSXElementName::Ident(Ident::new("Fragment".into(), DUMMY_SP)),
+                            name: JSXElementName::Ident(Ident::new("Fragment".into(), DUMMY_SP, Default::default())),
                             attrs: vec![],
                             self_closing: false,
                             type_args: None,
@@ -311,7 +311,7 @@ impl VisitMut for FeatureTransformer {
                         children: vec![JSXElementChild::JSXExprContainer(jsx_expr_container)],
                         closing: Some(JSXClosingElement {
                             span: DUMMY_SP,
-                            name: JSXElementName::Ident(Ident::new("Fragment".into(), DUMMY_SP)),
+                            name: JSXElementName::Ident(Ident::new("Fragment".into(), DUMMY_SP, Default::default())),
                         })
                     };
 
