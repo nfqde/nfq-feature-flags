@@ -1,16 +1,11 @@
 {
   "name": "@nfq/feature-flags",
-  "version": "3.2.0",
+  "version": "3.2.0-next.15.0.0-canary.173",
   "engines": {
     "node": ">=12.0.0"
   },
   "description": "Add feature flags to babel, nextjs, SWC, react and default js code",
   "main": "target/wasm32-wasi/release/nfq_feature_flags.wasm",
-  "standard-version": {
-    "scripts": {
-      "prebump": "nfqBump"
-    }
-  },
   "bin": {
     "nfq-generate-types": "./cli.js"
   },
