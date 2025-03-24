@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [15.2.2](https://github.com/nfqde/nfq-feature-flags/compare/v3.2.0-next.15.0.0-canary.173...v15.2.2) (2025-03-24)
+
+
+### Bug Fixes
+
+* **swc_ast:** fix some problems with new version ([#37](https://github.com/nfqde/nfq-feature-flags/issues/37)) ([6765198](https://github.com/nfqde/nfq-feature-flags/commit/6765198caa2516b844bd60b5e98426362515606b))
+* **SWC:** Update swc_core for next 15.2.0 ([#38](https://github.com/nfqde/nfq-feature-flags/issues/38)) ([6180e3f](https://github.com/nfqde/nfq-feature-flags/commit/6180e3f98b8bd4c37c7eade3d984a5cc3f682a09))
+
 ## [3.2.0-next.15.0.0-canary.173](https://github.com/nfqde/nfq-feature-flags/compare/v3.2.0...v3.2.0-next.15.0.0-canary.173) (2024-10-10)
 
 ## [3.2.0](https://github.com/nfqde/nfq-feature-flags/compare/v3.1.0...v3.2.0) (2024-08-17)
