@@ -10,17 +10,17 @@ crate-type = ["cdylib"]
 lto = true
 
 [dependencies]
-serde      = { version = "1.0.201", features = ["derive"] }
+serde      = { version = "1.0.203", features = ["derive"] }
 serde_json = "1.0.117"
-swc_core   = { version = "0.97.2", features = ["ecma_plugin_transform"] }
-swc_common = "0.35.0"
+swc_core   = { version = "16.0.0", features = ["ecma_plugin_transform"] }
+swc_common = "8.0.0"
 chrono = { version = "0.4", features = ["wasmbind"] }
 colored = "2"
 
 [dev-dependencies]
-swc_ecma_parser             = "0.147.0"
-swc_ecma_transforms         = "0.233.0"
-swc_ecma_transforms_testing = "0.144.0"
+swc_ecma_parser             = "10.0.0"
+swc_ecma_transforms         = "14.0.0"
+swc_ecma_transforms_testing = "11.0.0"
 testing                     = "0.37.0"
 
 # .cargo/config defines few alias to build plugin.
