@@ -5,7 +5,7 @@
     "node": ">=12.0.0"
   },
   "description": "Add feature flags to babel, nextjs, SWC, react and default js code",
-  "main": "target/wasm32-wasi/release/nfq_feature_flags.wasm",
+  "main": "target/wasm32-wasip1/release/nfq_feature_flags.wasm",
   "bin": {
     "nfq-generate-types": "./cli.js"
   },
@@ -16,7 +16,7 @@
   },
   "sideEffects": false,
   "scripts": {
-    "deploy": "standard-version --release-as 15.2.0 && git push --follow-tags origin master && npm publish",
+    "deploy": "standard-version --release-as 15.4.0 && git push --follow-tags origin master && npm publish",
     "prepublishOnly": "cargo +nightly build-wasi --release",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
