@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [15.2.3](https://github.com/nfqde/nfq-feature-flags/compare/v15.2.2...v15.2.3) (2025-07-15)
+
+
+### Bug Fixes
+
+* **SWC:** change wasm target to new wasip1 format ([#40](https://github.com/nfqde/nfq-feature-flags/issues/40)) ([02efa56](https://github.com/nfqde/nfq-feature-flags/commit/02efa565b778f33d07f194723d8be6122d481d75))
+
 ### [15.2.2](https://github.com/nfqde/nfq-feature-flags/compare/v3.2.0-next.15.0.0-canary.173...v15.2.2) (2025-03-24)
 
 
