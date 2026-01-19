@@ -86,42 +86,44 @@ impl FlagReplacer {
 
 impl VisitMut for FlagReplacer {
     fn visit_mut_import_decl(&mut self, import: &mut ImportDecl) {
-        let path = import.src.value.to_string();
+        let path = import.src.value.as_str();
 
-        if self.is_flag_import(&path) {
-            for specifier in &import.specifiers {
-                if let ImportSpecifier::Named(named) = specifier {
-                    let specifier_str = named.local.sym.to_string();
+        if path.is_some() {
+            if self.is_flag_import(&path.unwrap()) {
+                for specifier in &import.specifiers {
+                    if let ImportSpecifier::Named(named) = specifier {
+                        let specifier_str = named.local.sym.to_string();
 
-                    if self.flags.get(&specifier_str).is_none() {
-                        println!(
-                            "{}{}{}{}{}",
-                            "Imported ".red(),
-                            specifier_str.red().bold(),
-                            " from ".red(),
-                            path.red().bold(),
-                            " which is not a supported flag.".red()
-                        );
+                        if self.flags.get(&specifier_str).is_none() {
+                            println!(
+                                "{}{}{}{}{}",
+                                "Imported ".red(),
+                                specifier_str.red().bold(),
+                                " from ".red(),
+                                path.unwrap().red().bold(),
+                                " which is not a supported flag.".red()
+                            );
+                        }
                     }
                 }
             }
-        }
 
-        if self.is_jsx_import(&path) {
-            let allowed_specifiers: [&str; 2] = [self.config.jsx_with_feature.as_str(), self.config.jsx_without_feature.as_str()];
-            for specifier in &import.specifiers {
-                if let ImportSpecifier::Named(named) = specifier {
-                    let specifier_str = named.local.sym.to_string();
+            if self.is_jsx_import(&path.unwrap()) {
+                let allowed_specifiers: [&str; 2] = [self.config.jsx_with_feature.as_str(), self.config.jsx_without_feature.as_str()];
+                for specifier in &import.specifiers {
+                    if let ImportSpecifier::Named(named) = specifier {
+                        let specifier_str = named.local.sym.to_string();
 
-                    if !allowed_specifiers.contains(&specifier_str.as_str()) {
-                        println!(
-                            "{}{}{}{}{}",
-                            "Imported ".red(),
-                            specifier_str.red().bold(),
-                            " from ".red(),
-                            path.red().bold(),
-                            " which is not a supported flag.".red()
-                        );
+                        if !allowed_specifiers.contains(&specifier_str.as_str()) {
+                            println!(
+                                "{}{}{}{}{}",
+                                "Imported ".red(),
+                                specifier_str.red().bold(),
+                                " from ".red(),
+                                path.unwrap().red().bold(),
+                                " which is not a supported flag.".red()
+                            );
+                        }
                     }
                 }
             }

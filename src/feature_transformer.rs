@@ -103,17 +103,17 @@ impl FeatureTransformer {
                         }).collect::<Vec<_>>();
 
                         feature_values = Some(bool_values);
-                    } else if let box Expr::Lit(Lit::Bool(feature)) = feature_expr {
+                    } else if let Expr::Lit(Lit::Bool(feature)) = feature_expr.as_ref() {
                         feature_values = Some(vec![*feature]);
                     }
                 }
             } else if let JSXAttrOrSpread::JSXAttr(JSXAttr {
                 name: JSXAttrName::Ident(name),
-                value: Some(JSXAttrValue::Lit(Lit::Str(value))),
+                value: Some(JSXAttrValue::Str(value)),
                 ..
             }) = attr {
                 if name.sym == "deprecatesOn" {
-                    deprecates_on_value = Some(value.value.as_str().to_string());
+                    deprecates_on_value = Some(value.value.as_str().unwrap().to_string());
                 }
             } else if let JSXAttrOrSpread::JSXAttr(JSXAttr {
                 name: JSXAttrName::Ident(name),
