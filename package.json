@@ -1,6 +1,6 @@
 {
   "name": "@nfq/feature-flags",
-  "version": "16.1.0",
+  "version": "16.1.1",
   "engines": {
     "node": ">=12.0.0"
   },
@@ -16,7 +16,7 @@
   },
   "sideEffects": false,
   "scripts": {
-    "deploy": "standard-version --release-as 16.1.0 && git push --follow-tags origin master && npm publish",
+    "deploy": "standard-version --release-as 16.1.1 && git push --follow-tags origin master && npm publish",
     "prepublishOnly": "cargo +nightly build-wasi --release",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

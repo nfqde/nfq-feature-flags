@@ -65,8 +65,8 @@ impl VisitMut for ImportRemover {
     fn visit_mut_module(&mut self, module: &mut Module) {
         module.body.retain(|item| {
             if let ModuleItem::ModuleDecl(ModuleDecl::Import(import_decl)) = item {
-                let import_path = import_decl.src.value.to_string();
-                !self.should_remove_import(&import_path)
+                let import_path = import_decl.src.value.as_str();
+                !self.should_remove_import(&import_path.unwrap())
             } else {
                 true
             }
@@ -77,9 +77,9 @@ impl VisitMut for ImportRemover {
 
             for item in module.body.iter_mut() {
                 if let ModuleItem::ModuleDecl(ModuleDecl::Import(import_decl)) = item {
-                    let import_path = import_decl.src.value.to_string();
+                    let import_path = import_decl.src.value.as_str();
 
-                    if import_path == "react" {
+                    if import_path.unwrap() == "react" {
                         for specifier in &import_decl.specifiers {
                             if let ImportSpecifier::Named(ImportNamedSpecifier { local, .. }) = specifier {
                                 if local.sym == "Fragment" {
