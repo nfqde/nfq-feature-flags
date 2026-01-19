@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [16.1.2](https://github.com/nfqde/nfq-feature-flags/compare/v16.1.0...v16.1.2) (2026-01-19)
+
+
+### Bug Fixes
+
+* **Compiler:** fix errors with new swc_core and common libs. ([#41](https://github.com/nfqde/nfq-feature-flags/issues/41)) ([06f5fd0](https://github.com/nfqde/nfq-feature-flags/commit/06f5fd076881714db8b66ef679638b2196579789))
+
 ## [16.1.0](https://github.com/nfqde/nfq-feature-flags/compare/v15.4.1...v16.1.0) (2026-01-19)
 
 ### [15.4.1](https://github.com/nfqde/nfq-feature-flags/compare/v15.4.0...v15.4.1) (2025-07-15)
