@@ -1,6 +1,4 @@
 /* eslint-disable no-console */
-const nodePath = require('path');
-
 // eslint-disable-next-line no-unused-vars
 const colors = require('colors');
 
@@ -180,8 +178,7 @@ const checkDeprecation = (tagName, props, path, state) => {
             console.warn(`${prefix}${file} ${tagName.green} (with features ${feats.join(', ').green}) is deprecated since ${props.deprecatesOn.green}!`);
         }
     } else {
-        // eslint-disable-next-line security/detect-non-literal-require
-        const liveEnv = require(nodePath.resolve(process.cwd(), `./features.${state.opts.deprecationEnv}.js`));
+        const liveEnv = state.opts.deprecationFlags;
 
         if (props.feature.some(item => (liveEnv[item.name]))) {
             console.warn(`${prefix}${file} ${tagName.green} (with features ${feats.join(', ').green}) is deprecated because its active in live features list!`);
