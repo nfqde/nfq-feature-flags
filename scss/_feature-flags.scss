@@ -1,0 +1,34 @@
+@use "sass:map";
+@use "./config" as config;
+
+@mixin withFeature($name, $deprecatesOn: 'false') {
+    $value: map.get(config.$features, $name);
+
+    @if (not is-never-deprecated($deprecatesOn)) {
+        @if (is-deprecated($deprecatesOn)) {
+            @warn 'feature-flags-expired, #{$name}, #{$deprecatesOn}';
+        } @else if (is-deprecated-live($name)) {
+            @warn 'feature-flags-expired-live, #{$name}';
+        }
+    }
+
+    @if ($value == true) {
+        @content;
+    }
+}
+
+@mixin withoutFeature($name, $deprecatesOn: 'false') {
+    $value: map.get(config.$features, $name);
+
+    @if (not is-never-deprecated($deprecatesOn)) {
+        @if (is-deprecated($deprecatesOn)) {
+            @warn 'feature-flags-expired, #{$name}, #{$deprecatesOn}';
+        } @else if (is-deprecated-live($name)) {
+            @warn 'feature-flags-expired-live, #{$name}';
+        }
+    }
+
+    @if ($value == false) {
+        @content;
+    }
+}

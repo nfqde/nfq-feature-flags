@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "incremental": true,
+        "isolatedModules": false,
+        "jsx": "preserve",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "noImplicitAny": true,
+        "paths": {},
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "strictPropertyInitialization": true,
+        "declarationDir": "types",
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "target": "ESNext",
+        "types": ["node"]
+    },
+    "exclude": ["node_modules", "dist"]
+}
