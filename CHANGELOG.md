@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [16.1.3](https://github.com/nfqde/nfq-feature-flags/compare/v16.1.2...v16.1.3) (2026-07-12)
+
+
+### Features
+
+* **Flags:** Add sass and js flags outside next ([#45](https://github.com/nfqde/nfq-feature-flags/issues/45)) ([23af142](https://github.com/nfqde/nfq-feature-flags/commit/23af1428490734a35252f0342d0b65bf16fda277))
+
 ### [16.1.2](https://github.com/nfqde/nfq-feature-flags/compare/v16.1.0...v16.1.2) (2026-01-19)
 
 
