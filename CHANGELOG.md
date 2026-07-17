@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [16.1.4](https://github.com/nfqde/nfq-feature-flags/compare/v16.1.3...v16.1.4) (2026-07-17)
+
+
+### Bug Fixes
+
+* **eslint:** fix eslint import. ([#46](https://github.com/nfqde/nfq-feature-flags/issues/46)) ([37ff77d](https://github.com/nfqde/nfq-feature-flags/commit/37ff77da213206c3f1ba3e54877fc8008427a0b2))
+
+### [16.1.4](https://github.com/nfqde/nfq-feature-flags/compare/v16.1.3...v16.1.4) (2026-07-17)
+
+
+### Bug Fixes
+
+* **eslint:** fix eslint import. ([#46](https://github.com/nfqde/nfq-feature-flags/issues/46)) ([37ff77d](https://github.com/nfqde/nfq-feature-flags/commit/37ff77da213206c3f1ba3e54877fc8008427a0b2))
+
 ### [16.1.3](https://github.com/nfqde/nfq-feature-flags/compare/v16.1.2...v16.1.3) (2026-07-12)
 
 
