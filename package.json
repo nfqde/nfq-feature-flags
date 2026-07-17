@@ -1,6 +1,6 @@
 {
   "name": "@nfq/feature-flags",
-  "version": "16.1.4",
+  "version": "16.1.5",
   "engines": {
     "node": ">=24.0.0"
   },
@@ -10,6 +10,9 @@
     "nfq-generate-types": "./cli.js"
   },
   "exports": {
+    ".": {
+      "default": "./target/wasm32-wasip1/release/nfq_feature_flags.wasm"
+    },
     "./babel": {
       "import": "./babel/index.js",
       "require": "./babel/index.js"
@@ -39,7 +42,7 @@
   },
   "sideEffects": false,
   "scripts": {
-    "deploy": "standard-version --release-as 16.1.4 && git push --follow-tags origin master && npm publish",
+    "deploy": "standard-version --release-as 16.1.5 && git push --follow-tags origin master && npm publish",
     "prepublishOnly": "cargo +nightly build-wasi --release",
     "lint": "eslint ./babel ./eslint ./next ./scss ./webpack --ext='.js' --ext='.jsx' --ext='.ts' --ext='.tsx'",
     "test": "echo \"Error: no test specified\" && exit 1"

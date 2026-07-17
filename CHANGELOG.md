@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [16.1.5](https://github.com/nfqde/nfq-feature-flags/compare/v16.1.4...v16.1.5) (2026-07-17)
+
 ### [16.1.4](https://github.com/nfqde/nfq-feature-flags/compare/v16.1.3...v16.1.4) (2026-07-17)
 
 
