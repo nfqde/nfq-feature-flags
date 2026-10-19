@@ -147,7 +147,11 @@ impl VisitMut for FlagReplacer {
             if self.is_flag(ident.sym.to_string()) {
                 let flags = self.config.feature_flags.get(&self.config.deprecation_env);
 
-                if flags.is_some() && *flags.unwrap().get(&ident.sym.to_string()).unwrap() == true {
+                if flags
+                    .and_then(|env_flags| env_flags.get(ident.sym.as_ref()))
+                    .copied()
+                    .unwrap_or(false)
+                {
                     if self.current_attribute.is_none() {
                         let meta = self.source_map.lookup_char_pos(ident.span.lo());
 
